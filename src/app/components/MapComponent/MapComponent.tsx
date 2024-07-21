@@ -15,6 +15,7 @@ mapboxgl.accessToken =
 export default function MapComponent() {
   const searchParams = useSearchParams();
   const zipcode = searchParams.get("zipcode");
+  console.log({ zipcode });
   const counter = searchParams.get("c");
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
@@ -22,8 +23,9 @@ export default function MapComponent() {
   const { boundariesData, loading } = useBoundariesData(zipcode as string);
 
   useEffect(() => {
-    if (!boundariesData) return;
-    updateBoundingBox(map, boundariesData);
+    if (!boundariesData || !map || !zipcode) return;
+    updateBoundingBox(zipcode as string, map, boundariesData);
+    return () => {};
   }, [boundariesData, zipcode, counter]);
 
   return (
