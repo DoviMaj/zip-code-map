@@ -6,7 +6,6 @@ import { useBoundariesData } from "../../../hooks/useBoundariesData.hook";
 import { useMapInstance } from "../../../hooks/useMapInstance.hook";
 import { updateBoundingBox } from "./utils";
 import { useSearchParams } from "next/navigation";
-
 import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
 
 mapboxgl.accessToken =
@@ -25,7 +24,6 @@ export default function MapComponent() {
   useEffect(() => {
     if (!boundariesData || !map || !zipcode) return;
     updateBoundingBox(zipcode as string, map, boundariesData);
-    return () => {};
   }, [boundariesData, zipcode, counter]);
 
   return (

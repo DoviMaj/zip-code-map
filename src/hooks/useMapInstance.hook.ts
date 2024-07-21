@@ -15,8 +15,6 @@ export const useMapInstance = (
       zoom: 1,
       center: [31.771959, 35.217018],
     });
-
-    setMap(map);
   }, []);
 
   return { map };
