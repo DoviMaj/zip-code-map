@@ -56,6 +56,6 @@ export const updateBoundingBox = async (
   } else {
     setTimeout(function () {
       updateLayer();
-    }, 600);
+    }, 1000);
   }
 };

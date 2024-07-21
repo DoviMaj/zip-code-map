@@ -11,15 +11,16 @@ export const useBoundariesData = (
   const [boundariesData, setBoundariesData] = useState<GeoJsonData | null>(
     null
   );
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    // if (!zipCode) return;
     const fetchData = async () => {
-      setLoading(true);
-
       try {
-        console.count("use effect");
+        setLoading(true);
+
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
 
         // Fake data for testing
         let geojson = FakeBoundaries as any;
@@ -42,14 +43,13 @@ export const useBoundariesData = (
         setBoundariesData(geojson);
       } catch (error) {
         console.error("Failed to fetch data:", error);
+        alert("Failed to fetch data");
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
-
-    // if (zipCode) {
+    if (!zipCode) return;
     fetchData();
-    // }
   }, [zipCode]);
 
   return { boundariesData, loading };

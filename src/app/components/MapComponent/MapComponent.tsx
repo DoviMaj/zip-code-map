@@ -2,19 +2,15 @@
 import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import styles from "./styles.module.css";
 import { useBoundariesData } from "../../../hooks/useBoundariesData.hook";
 import { useMapInstance } from "../../../hooks/useMapInstance.hook";
 import { updateBoundingBox } from "./utils";
-import { useParams } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+
+import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG92aW1haiIsImEiOiJjbHl2ZnR0MWoxZmZjMnFxN2ZjaWJ6M3BrIn0.7uJGpXGSpk8n4ZQCk525FA";
-
-interface MapComponentProps {
-  zipCode: string;
-}
 
 export default function MapComponent() {
   const searchParams = useSearchParams();
@@ -23,12 +19,17 @@ export default function MapComponent() {
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const { map } = useMapInstance(mapContainerRef);
-  const { boundariesData } = useBoundariesData(zipcode as string);
+  const { boundariesData, loading } = useBoundariesData(zipcode as string);
 
   useEffect(() => {
     if (!boundariesData) return;
     updateBoundingBox(map, boundariesData);
   }, [boundariesData, zipcode, counter]);
 
-  return <div ref={mapContainerRef} className={styles.mapContainer}></div>;
+  return (
+    <div className="relative w-full h-screen">
+      {loading && <LoadingSpinner />}
+      <div ref={mapContainerRef} className="w-full h-full"></div>
+    </div>
+  );
 }
