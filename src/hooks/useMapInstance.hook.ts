@@ -8,13 +8,13 @@ export const useMapInstance = (
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
-
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v12",
       zoom: 1,
       center: [31.771959, 35.217018],
     });
+    setMap(map);
   }, []);
 
   return { map };
