@@ -45,11 +45,11 @@ export const useUpdateMap = ({
     const handleMouseLeaveCallback = () => handleMouseLeave(popup, map);
 
     map.on("mouseenter", LAYER_ID, handleMouseEnterCallback);
-    map.on("mouseleave", LAYER_ID, handleMouseLeaveCallback);
+    map.on("move", LAYER_ID, handleMouseLeaveCallback);
 
     return () => {
       map.off("mouseenter", LAYER_ID, handleMouseEnterCallback);
-      map.off("mouseleave", LAYER_ID, handleMouseLeaveCallback);
+      map.off("move", LAYER_ID, handleMouseLeaveCallback);
       popup.remove();
     };
   }, [boundariesData, zipcode, counter, map]);

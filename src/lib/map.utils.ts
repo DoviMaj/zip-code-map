@@ -33,7 +33,6 @@ const updateDataSourceAndLayer = (map: mapboxgl.Map, geojson: any) => {
 export const handleMouseLeave = (popup: mapboxgl.Popup, map: mapboxgl.Map) => {
   setTimeout(() => {
     map.getCanvas().style.cursor = "";
-
     if (popup) {
       popup.remove();
     }
