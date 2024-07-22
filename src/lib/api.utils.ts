@@ -4,7 +4,7 @@ const apiKey = "9a4c99157e7045b5a1f210949242107";
 
 // Function to fetch weather data
 export const fetchWeatherData = async (zipCode: string) => {
-  const url = ` https://cors-anywhere.herokuapp.com/http://api.weatherapi.com/v1/current.json?q=${zipCode}&key=${apiKey}&units=metric`;
+  const url = `http://api.weatherapi.com/v1/current.json?q=${zipCode}&key=${apiKey}&units=metric`;
   try {
     const response = await axios.get(url);
     return response.data;
@@ -17,7 +17,7 @@ export const fetchWeatherData = async (zipCode: string) => {
 
 export const fetchZipCodeBoundaries = async (zipCode: string) => {
   try {
-    const url = ` https://cors-anywhere.herokuapp.com/https://vanitysoft-boundaries-io-v1.p.rapidapi.com/rest/v1/public/boundary/zipcode`;
+    const url = `https://vanitysoft-boundaries-io-v1.p.rapidapi.com/rest/v1/public/boundary/zipcode`;
 
     const response = await axios.get(url, {
       params: { zipcode: zipCode },
