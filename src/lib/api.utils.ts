@@ -4,7 +4,7 @@ const apiKey = "9a4c99157e7045b5a1f210949242107";
 
 // Function to fetch weather data
 export const fetchWeatherData = async (zipCode: string) => {
-  const url = `http://api.weatherapi.com/v1/current.json?q=${zipCode}&key=${apiKey}&units=metric`;
+  const url = `https://api.weatherapi.com/v1/current.json?q=${zipCode}&key=${apiKey}&units=metric`;
   try {
     const response = await axios.get(url);
     return response.data;
