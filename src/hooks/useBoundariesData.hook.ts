@@ -16,20 +16,12 @@ export const useBoundariesData = (
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        setLoading(true);
-
-        // Fake data for testing
-        const geojson = FakeBoundaries as any;
-        // const geojson = await fetchZipCodeBoundaries(zipCode);
-
-        setBoundariesData(geojson);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-        alert("Failed to fetch data");
-      } finally {
-        setLoading(false);
-      }
+      setLoading(true);
+      // Fake data for testing
+      const geojson = FakeBoundaries as any;
+      // const geojson = await fetchZipCodeBoundaries(zipCode);
+      setBoundariesData(geojson);
+      setLoading(false);
     };
     if (!zipCode) return;
     fetchData();
