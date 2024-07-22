@@ -4,6 +4,7 @@ import mapboxgl from "mapbox-gl";
 import { SearchSection } from "../components/SearchComponents/SearchSection/SearchSection";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG92aW1haiIsImEiOiJjbHl2ZnR0MWoxZmZjMnFxN2ZjaWJ6M3BrIn0.7uJGpXGSpk8n4ZQCk525FA";
@@ -20,8 +21,10 @@ export default function Home() {
 
   return (
     <main>
-      <SearchSection changeSearchInput={changeSearchInput} />
-      <MapComponent />
+      <Suspense>
+        <SearchSection changeSearchInput={changeSearchInput} />
+        <MapComponent />
+      </Suspense>
     </main>
   );
 }

@@ -6,7 +6,6 @@ import { useBoundariesData } from "../../hooks/useBoundariesData.hook";
 import { useMapInstance } from "../../hooks/useMapInstance.hook";
 import { useSearchParams } from "next/navigation";
 import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
-
 import { useUpdateMap } from "../../hooks/useUpdateMap.hook";
 
 mapboxgl.accessToken =
