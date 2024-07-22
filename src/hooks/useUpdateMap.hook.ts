@@ -37,7 +37,7 @@ export const useUpdateMap = ({
 
     map.fitBounds(bounds, {
       padding: 20,
-      maxZoom: 20,
+      maxZoom: 15,
     });
 
     const handleMouseEnterCallback = () =>
