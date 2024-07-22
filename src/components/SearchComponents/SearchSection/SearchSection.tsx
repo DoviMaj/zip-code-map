@@ -2,7 +2,7 @@
 import { InputComponent } from "../../InputComponent/InputComponent";
 import { validateZipCode } from "./utils";
 import { useState } from "react";
-import { Button } from "@/ShadcnComponents/ui/button";
+import { Button } from "@/components/ShadcnComponents/ui/button";
 import { ZipCodeBox } from "../ZipCodeBox/ZipCodeBox";
 import { useSearchParams } from "next/navigation";
 

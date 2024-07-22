@@ -1,7 +1,7 @@
 "use client";
-import MapComponent from "./components/MapComponent/MapComponent";
+import MapComponent from "../components/MapComponent/MapComponent";
 import mapboxgl from "mapbox-gl";
-import { SearchSection } from "./components/SearchComponents/SearchSection/SearchSection";
+import { SearchSection } from "../components/SearchComponents/SearchSection/SearchSection";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
