@@ -2,9 +2,10 @@
 import { InputComponent } from "../../InputComponent/InputComponent";
 import { validateZipCode } from "./utils";
 import { useState } from "react";
-import { Button } from "@/components/ShadcnComponents/ui/button";
+import { Button } from "@/components/ui/button";
 import { ZipCodeBox } from "../ZipCodeBox/ZipCodeBox";
 import { useSearchParams } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 interface ISearchSectionProps {
   changeSearchInput: (value: string) => void;
@@ -23,6 +24,7 @@ export const SearchSection = (props: ISearchSectionProps) => {
   const searchParams = useSearchParams();
   const zipcode = searchParams.get("zipcode");
   const [searchInput, setSearchInput] = useState(zipcode || "");
+  const { toast } = useToast();
 
   const changeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
@@ -32,7 +34,10 @@ export const SearchSection = (props: ISearchSectionProps) => {
     if (validateZipCode(searchInput)) {
       props.changeSearchInput(searchInput);
     } else {
-      alert("Invalid ZIP code");
+      toast({
+        title: "Invalid ZIP code",
+        description: "Please enter a valid ZIP code",
+      });
     }
   };
 
@@ -42,7 +47,7 @@ export const SearchSection = (props: ISearchSectionProps) => {
   };
 
   return (
-    <div className="p-4 absolute top-5 z-50 w-1/4">
+    <div className="p-4 absolute top-5 z-10 w-1/2 md:w-1/4">
       <div className="flex items-center space-x-2">
         <InputComponent
           value={searchInput}

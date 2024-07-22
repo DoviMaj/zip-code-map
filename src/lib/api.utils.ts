@@ -10,8 +10,7 @@ export const fetchWeatherData = async (zipCode: string) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching weather data:", error);
-    alert("Error fetching weather data");
-    return null;
+    throw new Error("Error fetching weather data");
   }
 };
 
@@ -29,8 +28,7 @@ export const fetchZipCodeBoundaries = async (zipCode: string) => {
 
     return response.data;
   } catch (error) {
-    alert("Error fetching zipcode boundaries");
     console.error("Error fetching zipcode boundaries:", error);
-    return null;
+    throw new Error("Error fetching zipcode boundaries");
   }
 };

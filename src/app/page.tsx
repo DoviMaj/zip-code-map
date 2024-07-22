@@ -6,6 +6,7 @@ import { SearchSection } from "../components/SearchComponents/SearchSection/Sear
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
+import { Toaster } from "@/components/ui/toaster";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG92aW1haiIsImEiOiJjbHl2ZnR0MWoxZmZjMnFxN2ZjaWJ6M3BrIn0.7uJGpXGSpk8n4ZQCk525FA";
@@ -31,6 +32,7 @@ function HomeContent() {
 export default function Home() {
   return (
     <main>
+      <Toaster />
       <Suspense fallback={<LoadingSpinner />}>
         <HomeContent />
       </Suspense>

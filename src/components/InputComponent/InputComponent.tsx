@@ -1,6 +1,6 @@
 // src/components/StyledInput.tsx
 import React from "react";
-import { Input } from "@/components/ShadcnComponents/ui/input";
+import { Input } from "@/components/ui/input";
 
 interface StyledInputProps {
   placeholder?: string;

@@ -7,6 +7,8 @@ import {
   updateBoundingBox,
 } from "../lib/map.utils";
 import { GeoJsonData } from "../interfaces";
+import { fetchWeatherData } from "../lib/api.utils";
+import { useToast } from "../components/ui/use-toast";
 
 const LAYER_ID = "zipcode-boundary";
 
@@ -23,6 +25,8 @@ export const useUpdateMap = ({
   boundariesData,
   counter,
 }: UseUpdateMapProps) => {
+  const { toast } = useToast();
+
   useEffect(() => {
     if (!boundariesData || !map || !zipcode) return;
 
@@ -39,6 +43,33 @@ export const useUpdateMap = ({
       padding: 20,
       maxZoom: 15,
     });
+
+    const handleMouseEnter = async (
+      popup: mapboxgl.Popup,
+      zipCode: string,
+      map: mapboxgl.Map,
+      bounds: mapboxgl.LngLatBounds
+    ) => {
+      if (zipCode) {
+        try {
+          const weatherData = await fetchWeatherData(zipCode);
+          if (weatherData) {
+            const coordinates = bounds.getCenter();
+            const popupContent = `
+              <strong>Location:</strong> ${weatherData.location.name}<br>
+              <strong>Temperature:</strong> ${weatherData.current.temp_c} °C<br>
+              <strong>Time:</strong> ${new Date(weatherData.location.localtime).toLocaleTimeString()}`;
+            popup.setLngLat(coordinates).setHTML(popupContent).addTo(map);
+          }
+        } catch (error) {
+          toast({
+            title: "Error fetching weather data",
+            description: "Please try again later",
+          });
+          console.error("Error fetching weather data:", error);
+        }
+      }
+    };
 
     const handleMouseEnterCallback = () =>
       handleMouseEnter(popup, zipcode, map, bounds);
