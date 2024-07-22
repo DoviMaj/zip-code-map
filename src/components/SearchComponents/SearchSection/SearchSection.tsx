@@ -42,7 +42,7 @@ export const SearchSection = (props: ISearchSectionProps) => {
   };
 
   return (
-    <div className="p-4 absolute top-5 z-50 w-1/2">
+    <div className="p-4 absolute top-5 z-50 w-1/4">
       <div className="flex items-center space-x-2">
         <InputComponent
           value={searchInput}
