@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ZipCodeBox } from "../ZipCodeBox/ZipCodeBox";
 import { useSearchParams } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import styles from "./styles.module.css";
 
 interface ISearchSectionProps {
   changeSearchInput: (value: string) => void;

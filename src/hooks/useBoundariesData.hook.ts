@@ -1,7 +1,7 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FakeBoundaries from "../FakeData/zipcode-boundary.geojson.json";
 import { GeoJsonData } from "../interfaces";
-import { fetchZipCodeBoundaries } from "@/lib/api.utils";
+import { fetchZipCodeBoundaries } from "@/utils/api.utils";
 import { useToast } from "../components/ui/use-toast";
 
 export const useBoundariesData = (

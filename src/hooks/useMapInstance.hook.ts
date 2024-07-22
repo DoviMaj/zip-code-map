@@ -12,7 +12,7 @@ export const useMapInstance = (
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v12",
       zoom: 1,
-      center: [31.771959, 35.217018],
+      center: [-98.583333, 40], // Center on the USA
     });
 
     map.addControl(new mapboxgl.NavigationControl());

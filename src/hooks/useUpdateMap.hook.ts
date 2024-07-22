@@ -5,9 +5,9 @@ import {
   handleMouseEnter,
   handleMouseLeave,
   updateBoundingBox,
-} from "../lib/map.utils";
+} from "../utils/map.utils";
 import { GeoJsonData } from "../interfaces";
-import { fetchWeatherData } from "../lib/api.utils";
+import { fetchWeatherData } from "../utils/api.utils";
 import { useToast } from "../components/ui/use-toast";
 
 const LAYER_ID = "zipcode-boundary";
