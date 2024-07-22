@@ -14,6 +14,9 @@ export const useMapInstance = (
       zoom: 1,
       center: [31.771959, 35.217018],
     });
+
+    map.addControl(new mapboxgl.NavigationControl());
+
     setMap(map);
   }, []);
 
