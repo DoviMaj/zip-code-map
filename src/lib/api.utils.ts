@@ -17,7 +17,7 @@ export const fetchWeatherData = async (zipCode: string) => {
 
 export const fetchZipCodeBoundaries = async (zipCode: string) => {
   try {
-    const url = `https://vanitysoft-boundaries-io-v1.p.rapidapi.com/rest/v1/public/boundary/zipcode`;
+    const url = ` https://cors-anywhere.herokuapp.com/https://vanitysoft-boundaries-io-v1.p.rapidapi.com/rest/v1/public/boundary/zipcode`;
 
     const response = await axios.get(url, {
       params: { zipcode: zipCode },
