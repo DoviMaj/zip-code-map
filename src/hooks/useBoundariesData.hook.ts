@@ -20,8 +20,8 @@ export const useBoundariesData = (
         setLoading(true);
 
         // Fake data for testing
-        // let geojson = FakeBoundaries as any;
-        const geojson = await fetchZipCodeBoundaries(zipCode);
+        const geojson = FakeBoundaries as any;
+        // const geojson = await fetchZipCodeBoundaries(zipCode);
 
         setBoundariesData(geojson);
       } catch (error) {
