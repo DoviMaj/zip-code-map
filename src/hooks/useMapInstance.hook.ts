@@ -18,7 +18,7 @@ export const useMapInstance = (
     map.addControl(new mapboxgl.NavigationControl());
 
     setMap(map);
-  }, []);
+  }, [mapContainerRef]);
 
   return { map };
 };

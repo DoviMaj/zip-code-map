@@ -52,5 +52,5 @@ export const useUpdateMap = ({
       map.off("mouseleave", LAYER_ID, handleMouseLeaveCallback);
       popup.remove();
     };
-  }, [boundariesData, zipcode, counter]);
+  }, [boundariesData, zipcode, counter, map]);
 };
