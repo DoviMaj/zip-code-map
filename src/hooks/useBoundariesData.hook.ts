@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import FakeBoundaries from "../FakeData/zipcode-boundary.geojson.json";
 import { GeoJsonData } from "../interfaces";
 import { fetchZipCodeBoundaries } from "@/utils/api.utils";
 import { useToast } from "../components/ui/use-toast";
@@ -15,11 +14,10 @@ export const useBoundariesData = (
   );
   const [loading, setLoading] = useState<boolean>(false);
   const { toast } = useToast();
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      // Fake data for testing
-      // const geojson = FakeBoundaries as any;
 
       try {
         const geojson = await fetchZipCodeBoundaries(zipCode);
