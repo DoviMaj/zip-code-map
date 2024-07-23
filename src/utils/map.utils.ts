@@ -4,17 +4,21 @@ import { fetchWeatherData } from "./api.utils";
 
 const LAYER_ID = "zipcode-boundary";
 
-// Function to add or update the data source and layer
-const updateDataSourceAndLayer = (map: mapboxgl.Map, geojson: any) => {
+const removeExistingLayers = (map: mapboxgl.Map) => {
   if (map.getLayer(LAYER_ID)) {
     map.removeLayer(LAYER_ID);
+  }
+  if (map.getLayer(`${LAYER_ID}-border`)) {
+    map.removeLayer(`${LAYER_ID}-border`);
   }
 
   if (map.getSource(LAYER_ID)) {
     map.removeSource(LAYER_ID);
   }
+};
 
-  // Add the new layer
+const addLayers = (map: mapboxgl.Map, geojson: any) => {
+  // Add the fill layer
   map.addLayer({
     id: LAYER_ID,
     type: "fill",
@@ -27,6 +31,35 @@ const updateDataSourceAndLayer = (map: mapboxgl.Map, geojson: any) => {
       "fill-opacity": 0.6,
     },
   });
+
+  // Add the border layer
+  map.addLayer({
+    id: `${LAYER_ID}-border`,
+    type: "line",
+    source: LAYER_ID,
+    paint: {
+      "line-color": "#000000",
+      "line-width": 2,
+    },
+  });
+};
+
+// Function to add or update the data source and layer
+const updateDataSourceAndLayer = (map: mapboxgl.Map, geojson: any) => {
+  removeExistingLayers(map);
+  addLayers(map, geojson);
+};
+
+// Main function to update the bounding box
+export const updateBoundingBox = async (
+  map: mapboxgl.Map,
+  boundariesData: GeoJsonData
+) => {
+  if (map.isStyleLoaded()) {
+    updateDataSourceAndLayer(map, boundariesData);
+  } else {
+    map.once("styledata", () => updateDataSourceAndLayer(map, boundariesData));
+  }
 };
 
 // Function to handle the mouse leave event
@@ -76,16 +109,4 @@ export const calculateBounds = (geojson: any) => {
     bounds.extend([coord[0], coord[1]]);
   }
   return bounds;
-};
-
-// Main function to update the bounding box
-export const updateBoundingBox = async (
-  map: mapboxgl.Map,
-  boundariesData: GeoJsonData
-) => {
-  if (map.isStyleLoaded()) {
-    updateDataSourceAndLayer(map, boundariesData);
-  } else {
-    map.once("styledata", () => updateDataSourceAndLayer(map, boundariesData));
-  }
 };
