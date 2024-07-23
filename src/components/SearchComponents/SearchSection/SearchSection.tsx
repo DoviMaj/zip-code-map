@@ -1,12 +1,11 @@
 "use client";
 import { InputComponent } from "../../InputComponent/InputComponent";
-import { validateZipCode } from "./utils";
+import { validateZipCode } from "../../../utils/zipcode.utils";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ZipCodeBox } from "../ZipCodeBox/ZipCodeBox";
 import { useSearchParams } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
-import styles from "./styles.module.css";
 
 interface ISearchSectionProps {
   changeSearchInput: (value: string) => void;
@@ -48,7 +47,7 @@ export const SearchSection = (props: ISearchSectionProps) => {
   };
 
   return (
-    <div className="p-4 absolute top-5 z-10 w-1/2 md:w-1/4">
+    <div className="p-4 absolute top-5 z-10 w-1/2 sm:w-1/4">
       <div className="flex items-center space-x-2">
         <InputComponent
           value={searchInput}
@@ -60,7 +59,7 @@ export const SearchSection = (props: ISearchSectionProps) => {
         </Button>
       </div>
       <div>
-        <div className="w-2/3 cursor-pointer grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-5">
+        <div className="w-full cursor-pointer grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-5">
           {randomZipCodes.map((zip) => (
             <ZipCodeBox
               key={zip.zipCode}
