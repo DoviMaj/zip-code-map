@@ -10,7 +10,7 @@ export const fetchWeatherData = async (zipCode: string) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching weather data:", error);
-    return null;
+    throw new Error("Error fetching weather data");
   }
 };
 
