@@ -44,35 +44,8 @@ export const useUpdateMap = ({
       maxZoom: 15,
     });
 
-    const handleMouseEnter = async (
-      popup: mapboxgl.Popup,
-      zipCode: string,
-      map: mapboxgl.Map,
-      bounds: mapboxgl.LngLatBounds
-    ) => {
-      if (zipCode) {
-        try {
-          const weatherData = await fetchWeatherData(zipCode);
-          if (weatherData) {
-            const coordinates = bounds.getCenter();
-            const popupContent = `
-              <strong>Location:</strong> ${weatherData.location.name}<br>
-              <strong>Temperature:</strong> ${weatherData.current.temp_c} °C<br>
-              <strong>Time:</strong> ${new Date(weatherData.location.localtime).toLocaleTimeString()}`;
-            popup.setLngLat(coordinates).setHTML(popupContent).addTo(map);
-          }
-        } catch (error) {
-          toast({
-            title: "Error fetching weather data",
-            description: "Please try again later",
-          });
-          console.error("Error fetching weather data:", error);
-        }
-      }
-    };
-
     const handleMouseEnterCallback = () =>
-      handleMouseEnter(popup, zipcode, map, bounds);
+      handleMouseEnter(popup, zipcode, map, bounds, toast);
     const handleMouseLeaveCallback = () => handleMouseLeave(popup, map);
 
     map.on("mouseenter", LAYER_ID, handleMouseEnterCallback);

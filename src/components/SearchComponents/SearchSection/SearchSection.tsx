@@ -1,6 +1,6 @@
 "use client";
 import { InputComponent } from "../../InputComponent/InputComponent";
-import { validateZipCode } from "../../../utils/zipcode.utils";
+import { validateZipCode } from "../../../utils/zipcode.utils.";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ZipCodeBox } from "../ZipCodeBox/ZipCodeBox";
