@@ -19,10 +19,10 @@ export const useBoundariesData = (
     const fetchData = async () => {
       setLoading(true);
       // Fake data for testing
-      const geojson = FakeBoundaries as any;
+      // const geojson = FakeBoundaries as any;
 
       try {
-        // const geojson = await fetchZipCodeBoundaries(zipCode);
+        const geojson = await fetchZipCodeBoundaries(zipCode);
         setBoundariesData(geojson);
       } catch (error) {
         console.error("Error fetching zipcode boundaries:", error);
