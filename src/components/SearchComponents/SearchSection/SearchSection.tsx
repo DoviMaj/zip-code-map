@@ -46,18 +46,23 @@ export const SearchSection = (props: ISearchSectionProps) => {
     props.changeSearchInput(zipCode);
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleZipSearch();
+  };
+
   return (
     <div className="p-4 absolute top-5 z-10 w-1/2 sm:w-1/4">
-      <div className="flex items-center space-x-2">
+      <form onSubmit={handleSubmit} className="flex items-center space-x-2">
         <InputComponent
           value={searchInput}
           placeholder="Search for US Zip Code"
           onChange={changeSearchInput}
         />
-        <Button variant="outline" onClick={handleZipSearch}>
+        <Button variant="outline" type="submit">
           Go
         </Button>
-      </div>
+      </form>
       <div>
         <div className="w-full cursor-pointer grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-5">
           {randomZipCodes.map((zip) => (
